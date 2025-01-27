@@ -11,10 +11,13 @@ const fetchProduct = async (id: string): Promise<SingleProduct | null> => {
 export default async function ProductDetails({
   params,
 }: {
-  params: { id: string };
+  params: Promise<{ id: string }>;
 }) {
-  const product = await fetchProduct(params.id);
+  const { id } = await params;
+
+  const product = await fetchProduct(id);
   if (!product) return <div>Product not found</div>;
+
   return (
     <div className="flex justify-center items-center min-h-screen bg-gray-100 py-8">
       <div className="mx-auto max-w-sm bg-white p-4 rounded-md shadow-md border border-gray-200 gap-2">
