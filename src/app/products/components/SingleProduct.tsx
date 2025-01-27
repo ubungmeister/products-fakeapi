@@ -16,11 +16,11 @@ export const SingleProduct = ({ product }: ProductProps) => {
 
   return (
     <div
-      className="bg-white p-4 rounded-md shadow-md border border-gray-200 gap-2 mx-auto max-w-sm"
+      className="product-container"
       onClick={() => handleOnClick(product.id)}
     >
-      <div className="w-[300px] h-[300px] mx-auto justify-center items-center">
-        <p>{product.title}</p>
+      <div className="w-[300px] h-[300px] mx-auto justify-center items-center space-y-4">
+        <p className="text-center">{product.title}</p>
         <div className="w-[150px] h-[150px] mx-auto">
           <Image
             src={product.image}

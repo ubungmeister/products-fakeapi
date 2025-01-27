@@ -19,3 +19,17 @@ body {
   background: var(--background);
   font-family: Arial, Helvetica, sans-serif;
 }
+@layer components {
+  .product-container {
+    @apply bg-white p-4 rounded-md shadow-md border border-gray-200 gap-2 mx-auto max-w-sm;
+  }
+  .products-container {
+    @apply flex flex-row justify-center items-center space-x-4 mt-8;
+  }
+  .products-list {
+    @apply  sm:grid-cols-2 md:grid-cols-3 gap-4 my-4;
+  }
+  .sorting-container {
+    @apply flex flex-row items-center space-x-2 border border-gray-300 rounded-md p-2;
+  }
+}

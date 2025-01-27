@@ -2,10 +2,13 @@
 import { useEffect, useState } from 'react';
 import { SingleProduct } from './SingleProduct';
 import { Product } from '../types/type';
+import { Selector } from './Selector';
+import { Sorting } from './Sorting';
 
 type ProductListProps = {
   products: Product[];
 };
+
 export const ProductList = ({ products }: ProductListProps) => {
   const [category, setCategory] = useState('');
   const [sortedProducts, setSortedProducts] = useState<Product[] | null>(null);
@@ -35,37 +38,14 @@ export const ProductList = ({ products }: ProductListProps) => {
 
   return (
     <div className="flex flex-col items-center ">
-      <div className="flex flex-row justify-center items-center space-x-4 mt-8">
-        <select
-          onClick={(e) => setCategory((e.target as HTMLSelectElement).value)}
-          className="border border-gray-200 rounded-md p-2 "
-          name="category"
-          id="category"
-        >
-          <option value="">All</option>
-          {uniqueCategories.map((category) => (
-            <option value={category} key={category}>
-              {category}
-            </option>
-          ))}
-        </select>
-        <div className="flex flex-row items-center space-x-2 border border-gray-300 rounded-md p-2">
-          <p className="text-sm font-medium">Sort by price:</p>
-          <button
-            className="text-lg p-2 rounded-md bg-blue-100 hover:bg-blue-200"
-            onClick={() => handleOnPriceSoring('asc')}
-          >
-            ⬆️
-          </button>
-          <button
-            className="text-lg p-2 rounded-md bg-blue-100 hover:bg-blue-200"
-            onClick={() => handleOnPriceSoring('dsc')}
-          >
-            ⬇️
-          </button>
-        </div>
+      <div className="products-container">
+        <Selector
+          setCategory={setCategory}
+          uniqueCategories={uniqueCategories}
+        />
+        <Sorting handleOnPriceSoring={handleOnPriceSoring} />
       </div>
-      <div className="grid grid-col-1 sm:grid-cols-2 md:grid-cols-3 gap-4 my-4 ">
+      <div className="products-list grid grid-col-1">
         {sortedProducts?.map((product) => (
           <SingleProduct key={product.id} product={product} />
         ))}

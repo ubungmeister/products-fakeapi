@@ -16,7 +16,7 @@ export default async function ProductDetails({
   const product = await fetchProduct(params.id);
   if (!product) return <div>Product not found</div>;
   return (
-    <div className="flex justify-center items-center h-auto mt-8 md:mt-0 md:h-screen">
+    <div className="flex justify-center items-center min-h-screen bg-gray-100 py-8">
       <div className="mx-auto max-w-sm bg-white p-4 rounded-md shadow-md border border-gray-200 gap-2">
         <div className="flex flex-col space-y-4 mx-4">
           <p className="text-center">{product.title}</p>
